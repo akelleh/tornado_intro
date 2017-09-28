@@ -87,8 +87,10 @@ var App = React.createClass( {
         dataFormat: "json",
         dataSource: myDataSource2
     };
-    
-    var chartData = $.ajax({type: "GET", url: "http://localhost:7777/chart/pie", async: false})//.responseJSON;
+
+    var chartData = $.ajax({type: "GET",
+                            url: "http://localhost:7777/chart/pie",
+                            async: false})
     console.log(chartData)
     var myData = chartData.responseJSON
     console.log(myData)
