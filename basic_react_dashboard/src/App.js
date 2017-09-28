@@ -4,7 +4,7 @@ import charts from 'fusioncharts/fusioncharts.charts'
 import ReactFC from 'react-fusioncharts'
 import FusionCharts from 'fusioncharts'
 import 'fusioncharts/themes/fusioncharts.theme.carbon'
-import httpGet from 'requests'
+import $ from 'jquery'
 
 charts(FusionCharts)
 
@@ -87,39 +87,35 @@ var App = React.createClass( {
         dataFormat: "json",
         dataSource: myDataSource2
     };
+    
+    var chartData = $.ajax({type: "GET", url: "http://localhost:7777/chart/pie", async: false})//.responseJSON;
+    console.log(chartData)
+    var myData = chartData.responseJSON
+    console.log(myData)
 
-    var request = require('request');
-    request('http://localhost:7777/chart/pie', function (error, response, body) {
-      console.log('error:', error);
-      console.log('statusCode:', response && response.statusCode);
-    });
-
-    var props_pie_chart_right = httpGet('http://localhost:7777/chart/pie')
-
-    var temp = {
+    var props_pie_chart_right = {
         id: "doughnut2d",
         type: "doughnut2d",
         width: "80%",
         height: 400,
         dataFormat: "json",
-        dataSource: myDataSource
+        dataSource: myData
     };
 
     return(
-request.get('http://localhost:7777/chart/pie')
-//    <div>
-//      <div className="chart-row">
-//          <ReactFC{...revenueChartConfigs}/>
-//      </div>
-//      <div className="chart-row">
-//        <div className="inline-chart">
-//          <ReactFC{...props_pie_chart_left}/>
-//        </div>
-//        <div className="inline-chart">
-//          <ReactFC{...props_pie_chart_right}/>
-//        </div>
-//       </div>
-//    </div>
+    <div>
+      <div className="chart-row">
+          <ReactFC{...revenueChartConfigs}/>
+      </div>
+      <div className="chart-row">
+        <div className="inline-chart">
+          <ReactFC{...props_pie_chart_left}/>
+        </div>
+        <div className="inline-chart">
+          <ReactFC{...props_pie_chart_right}/>
+        </div>
+       </div>
+    </div>
 
     )
 }

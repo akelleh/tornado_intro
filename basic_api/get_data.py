@@ -1,4 +1,4 @@
-
+import json
 
 def get_chart_data(chart_name):
     """
@@ -7,11 +7,11 @@ def get_chart_data(chart_name):
     format, or some other json format.
     """
     chart_data = [
-                  ("Bakersfield Central", 880000),
-                  ("Garden Groove harbour", 730000),
-                  ("Los Angeles Topanga", 590000),
-                  ("Compton-Rancho Dom", 520000),
-                  ("Daly City Serramonte", 330000)
+                  ("Bakersfield Central", "880000"),
+                  ("Garden Groove harbour", "730000"),
+                  ("Los Angeles Topanga", "590000"),
+                  ("Compton-Rancho Dom", "520000"),
+                  ("Daly City Serramonte", "330000")
                  ]
     return chart_data
 
@@ -26,14 +26,7 @@ def format_chart(chart_name, chart_data):
                       },
              "data": [{"label": label, "value": value} for label, value in chart_data]
             }
-    formatted_chart = {
-                       "type": "column2d",
-                       "width": "80%",
-                       "height": 400,
-                       "dataFormat": "json",
-                       "dataSource": chart
-                      }
-    return formatted_chart
+    return chart
 
 
 def get_chart(chart_name):
